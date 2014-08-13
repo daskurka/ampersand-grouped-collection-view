@@ -31,7 +31,6 @@ module.exports = View.extend({
     },
 
     addViewForModel: function (model) {
-        console.log('adding model?', model.toString());
         if (!this.rendered) {
             return;
         }
