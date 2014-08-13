@@ -21,7 +21,7 @@ var GroupedCollectionView = require('ampersand-grouped-collection-view');
 
 var view = new GroupedCollectionView({
     itemView: View.extend({
-        template: '<div><p role="message-body"></p><span role="message-timestamp"><span></div>',
+        template: '<div><p role="msg-body"></p><span role="msg-timestamp"><span></div>',
         bindings: {
             'model.body': {
                 type: 'text'
@@ -34,7 +34,7 @@ var view = new GroupedCollectionView({
         }
     }),
     groupView: View.extend({
-        template: '<div><img role="contact-avatar"/><ul role="messages"></ul></div>',
+        template: '<div><img role="avatar"/><ul role="messages"></ul></div>',
         bindings: {
             'model.avatar': {
                 type: 'attribute',
