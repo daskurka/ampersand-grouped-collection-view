@@ -16,20 +16,24 @@ npm install ampersand-grouped-collection-view
 ## Example
 
 ```javascript
+var View = require('ampersand-view');
 var GroupedCollectionView = require('ampersand-grouped-collection-view');
 
 
 var view = new GroupedCollectionView({
+    el: someDOMElement,
+    collection: messagesCollection,
+
     itemView: View.extend({
-        template: '<div><p role="msg-body"></p><span role="msg-timestamp"><span></div>',
+        template: '<div><p role="msg-body"></p><span role="msg-time"><span></div>',
         bindings: {
             'model.body': {
                 type: 'text'
-                role: 'message-body'
+                role: 'msg-body'
             },
             'model.timestamp': {
                 type: 'text',
-                role: 'message-timestamp'
+                role: 'msg-time'
             }
         }
     }),
@@ -39,7 +43,7 @@ var view = new GroupedCollectionView({
             'model.avatar': {
                 type: 'attribute',
                 name: 'src',
-                role: 'contact-avatar'
+                role: 'avatar'
             }
         },
         render: function () {
@@ -52,6 +56,7 @@ var view = new GroupedCollectionView({
             });
         }
     }),
+
     groupsWith: function (model, prevModel) {
         // Used to determine when a new group is needed.
         // Return `true` if `model` belongs to the same group
