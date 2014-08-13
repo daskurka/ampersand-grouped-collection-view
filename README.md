@@ -9,13 +9,13 @@ Part of the [Ampersand.js toolkit](http://ampersandjs.com) for building clientsi
 
 ## Install
 
-```
+```sh
 npm install ampersand-grouped-collection-view
 ```
 
 ## Example
 
-```
+```javascript
 var GroupedCollectionView = require('ampersand-grouped-collection-view');
 
 
