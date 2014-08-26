@@ -1,6 +1,6 @@
 {
   "name": "ampersand-grouped-collection-view",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Render the items in a collection, where items may be grouped in batches (such as a list of chats grouped by sender)",
   "main": "ampersand-grouped-collection-view.js",
   "author": "Lance Stout <lance@andyet.net>",
