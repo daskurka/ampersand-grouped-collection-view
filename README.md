@@ -25,25 +25,25 @@ var view = new GroupedCollectionView({
     collection: messagesCollection,
 
     itemView: View.extend({
-        template: '<div><p role="msg-body"></p><span role="msg-time"><span></div>',
+        template: '<div><p data-hook="msg-body"></p><span data-hook="msg-time"><span></div>',
         bindings: {
             'model.body': {
                 type: 'text'
-                role: 'msg-body'
+                hook: 'msg-body'
             },
             'model.timestamp': {
                 type: 'text',
-                role: 'msg-time'
+                hook: 'msg-time'
             }
         }
     }),
     groupView: View.extend({
-        template: '<div><img role="avatar"/><ul role="messages"></ul></div>',
+        template: '<div><img data-hook="avatar"/><ul data-hook="messages"></ul></div>',
         bindings: {
             'model.avatar': {
                 type: 'attribute',
                 name: 'src',
-                role: 'avatar'
+                hook: 'avatar'
             }
         },
         render: function () {
@@ -52,7 +52,7 @@ var view = new GroupedCollectionView({
             // views will be appended there instead of on the root element for the
             // group view.
             this.cacheElements({
-                groupEl: '[role=messages]'
+                groupEl: '[data-hook=messages]'
             });
         }
     }),
