@@ -12,6 +12,7 @@ module.exports = View.extend({
         this.groupViewOptions = spec.groupViewOptions || {};
         this.groupsWith = spec.groupsWith;
         this.prepareGroup = spec.prepareGroup;
+        this.template = spec.template || this.template;
 
         this.collection = spec.collection;
 
