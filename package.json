@@ -1,16 +1,21 @@
 {
   "name": "ampersand-grouped-collection-view",
-  "version": "1.1.1",
   "description": "Render the items in a collection, where items may be grouped in batches (such as a list of chats grouped by sender)",
-  "main": "ampersand-grouped-collection-view.js",
+  "version": "1.1.1",
   "author": "Lance Stout <lance@andyet.net>",
-  "license": "MIT",
   "dependencies": {
-    "underscore": "^1.6.0",
-    "ampersand-view": "^7.0.1"
+    "ampersand-view": "^7.0.1",
+    "underscore": "^1.6.0"
   },
   "devDependencies": {
     "jshint": "^2.5.3",
     "precommit-hook": "^1.0.7"
+  },
+  "homepage": "https://github.com/legastero/ampersand-grouped-collection-view",
+  "license": "MIT",
+  "main": "ampersand-grouped-collection-view.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/legastero/ampersand-grouped-collection-view"
   }
 }
