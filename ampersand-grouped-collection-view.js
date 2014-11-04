@@ -16,6 +16,9 @@ module.exports = View.extend({
 
         this.collection = spec.collection;
 
+        this.itemViews = [];
+        this.groupViews = [];
+
         this.listenTo(this.collection, 'add', this.addViewForModel);
         this.listenTo(this.collection, 'sort', this.renderAll);
         this.listenTo(this.collection, 'remove', this.renderAll);
@@ -23,6 +26,18 @@ module.exports = View.extend({
 
         this.currentGroup = null;
         this.lastModel = null;
+    },
+
+    remove: function () {
+        this.removeAllViews();
+        View.prototype.remove.call(this);
+    },
+
+    removeAllViews: function () {
+        _.invoke(this.itemViews, 'remove');
+        _.invoke(this.groupViews, 'remove');
+        this.itemViews = [];
+        this.groupViews = [];
     },
 
     render: function () {
@@ -47,6 +62,7 @@ module.exports = View.extend({
             group.render();
             this.el.appendChild(group.el);
             this.currentGroup = group;
+            this.groupViews.push(group);
         }
 
         var view = new this.itemView(_({
@@ -54,6 +70,7 @@ module.exports = View.extend({
             model: model
         }).extend(this.itemViewOptions));
         view.render();
+        this.itemViews.push(view);
 
         var groupEl = this.currentGroup.groupEl || this.currentGroup.el;
         groupEl.appendChild(view.el);
@@ -66,9 +83,7 @@ module.exports = View.extend({
         this.lastModel = null;
         this.currentGroup = null;
 
-        while (this.el.firstChild) {
-            this.el.removeChild(this.el.firstChild);
-        }
+        this.removeAllViews();
 
         this.collection.each(function (model) {
             self.addViewForModel(model);
