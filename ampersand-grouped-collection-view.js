@@ -55,9 +55,9 @@ module.exports = View.extend({
             return;
         }
 
-        if (!this.currentGroup || !this.lastModel || !this.groupsWith(model, this.lastModel)) {
+        if (!this.currentGroup || !this.lastModel || !this.groupsWith(model, this.lastModel, this.currentGroup)) {
             var group = new this.groupView(_({
-                model: this.prepareGroup(model)
+                model: this.prepareGroup(model, this.currentGroup)
             }).extend(this.groupViewOptions));
             group.render();
             this.el.appendChild(group.el);

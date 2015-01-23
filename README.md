@@ -57,15 +57,17 @@ var view = new GroupedCollectionView({
         }
     }),
 
-    groupsWith: function (model, prevModel) {
+    groupsWith: function (model, prevModel, currentGroup) {
         // Used to determine when a new group is needed.
         // Return `true` if `model` belongs to the same group
         // as `prevModel`.
+        // The current group is also available for comparison.
         return model.sender.id === prevModel.sender.id;
     },
-    prepareGroup: function (model) {
+    prepareGroup: function (model, prevGroup) {
         // Prepare a Group model based on the Item model
         // that triggered the group's creation.
+        // The previous group model is also provided.
         return model.sender; 
     }
 });
