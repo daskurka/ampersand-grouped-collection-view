@@ -25,6 +25,7 @@ module.exports = View.extend({
         this.listenTo(this.collection, 'refresh reset', this.renderAll);
 
         this.currentGroup = null;
+        this.currentGroupView = null;
         this.lastModel = null;
     },
 
@@ -56,23 +57,25 @@ module.exports = View.extend({
         }
 
         if (!this.currentGroup || !this.lastModel || !this.groupsWith(model, this.lastModel, this.currentGroup)) {
-            var group = new this.groupView(_({
-                model: this.prepareGroup(model, this.currentGroup)
+            var group = this.prepareGroup(model, this.currentGroup);
+            var groupView = new this.groupView(_({
+                model: group
             }).extend(this.groupViewOptions));
-            group.render();
-            this.el.appendChild(group.el);
+            groupView.render();
+            this.el.appendChild(groupView.el);
             this.currentGroup = group;
-            this.groupViews.push(group);
+            this.currentGroupView = groupView;
+            this.groupViews.push(groupView);
         }
 
         var view = new this.itemView(_({
-            containerEl: this.currentGroup.containerEl,
+            containerEl: this.currentGroupView.containerEl,
             model: model
         }).extend(this.itemViewOptions));
         view.render();
         this.itemViews.push(view);
 
-        var groupEl = this.currentGroup.groupEl || this.currentGroup.el;
+        var groupEl = this.currentGroupView.groupEl || this.currentGroupView.el;
         groupEl.appendChild(view.el);
         this.lastModel = model;
     },
@@ -82,6 +85,7 @@ module.exports = View.extend({
 
         this.lastModel = null;
         this.currentGroup = null;
+        this.currentGroupView = null;
 
         this.removeAllViews();
 
