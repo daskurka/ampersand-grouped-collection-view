@@ -1,4 +1,5 @@
-var _ = require('underscore');
+var extend = require('lodash.assign');
+var invoke = require('lodash.invoke');
 var View = require('ampersand-view');
 
 
@@ -35,8 +36,8 @@ module.exports = View.extend({
     },
 
     removeAllViews: function () {
-        _.invoke(this.itemViews, 'remove');
-        _.invoke(this.groupViews, 'remove');
+        invoke(this.itemViews, 'remove');
+        invoke(this.groupViews, 'remove');
         this.itemViews = [];
         this.groupViews = [];
     },
@@ -58,9 +59,9 @@ module.exports = View.extend({
 
         if (!this.currentGroup || !this.lastModel || !this.groupsWith(model, this.lastModel, this.currentGroup)) {
             var group = this.prepareGroup(model, this.currentGroup);
-            var groupView = new this.groupView(_({
+            var groupView = new this.groupView(extend({
                 model: group
-            }).extend(this.groupViewOptions));
+            }, this.groupViewOptions));
             groupView.render();
             this.el.appendChild(groupView.el);
             this.currentGroup = group;
@@ -68,10 +69,10 @@ module.exports = View.extend({
             this.groupViews.push(groupView);
         }
 
-        var view = new this.itemView(_({
+        var view = new this.itemView(extend({
             containerEl: this.currentGroupView.containerEl,
             model: model
-        }).extend(this.itemViewOptions));
+        }, this.itemViewOptions));
         view.render();
         this.itemViews.push(view);
 

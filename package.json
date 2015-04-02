@@ -5,7 +5,8 @@
   "author": "Lance Stout <lance@andyet.net>",
   "dependencies": {
     "ampersand-view": "^7.0.1",
-    "underscore": "^1.6.0"
+    "lodash.assign": "^3.0.0",
+    "lodash.invoke": "^3.1.0"
   },
   "devDependencies": {
     "jshint": "^2.5.3",
