@@ -1,5 +1,5 @@
 var extend = require('lodash.assign');
-var invoke = require('lodash.invoke');
+var invokeMap = require('lodash.invokeMap');
 var View = require('ampersand-view');
 
 
@@ -36,8 +36,8 @@ module.exports = View.extend({
     },
 
     removeAllViews: function () {
-        invoke(this.itemViews, 'remove');
-        invoke(this.groupViews, 'remove');
+        invokeMap(this.itemViews, 'remove');
+        invokeMap(this.groupViews, 'remove');
         this.itemViews = [];
         this.groupViews = [];
     },
